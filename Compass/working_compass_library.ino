@@ -1,0 +1,17 @@
+#include "bucket_compass.h"
+
+void setup()
+{
+  Serial.begin(9600);              // Start serial ports
+  CMPS12.begin(9600);
+}
+
+void loop()
+{
+  float heading = getHeading();
+
+  Serial.print("Heading: ");       // Display 16 bit angle with decimal place
+  Serial.println(heading);
+
+  delay(1000);                           // Short delay before next loop
+}
