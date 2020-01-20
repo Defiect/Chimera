@@ -5,7 +5,7 @@
 #define CMPS_GET_PITCH 0x14
 #define CMPS_GET_ROLL 0x15
 
-SoftwareSerial CMPS12 = SoftwareSerial(2, 3);
+SoftwareSerial CMPS12 = SoftwareSerial(8, 9);
 
 unsigned char high_byte, low_byte, angle8;
 char pitch, roll;
@@ -32,14 +32,14 @@ float transferHeading(float heading) { //translate compass reading into coordina
   return newHeading;
 }
 
-float getHeading() { //get angle from cmps12 sensor in facingAngle format
+float getAbsoluteHeading() { //get angle from cmps12 sensor in facingAngle format
   float heading = transferHeading(getRawHeading());
   return heading;
 }
 
-float getCalibratedHeading() { //sets calibrated heading to 0 degrees, the starting angle of the bot
+float getHeading() { //creates new heading that centers the bot at 0 degrees3
 
-  float calibratedHeading = getHeading() - startingHeading;
+  float calibratedHeading = getAbsoluteHeading() - startingHeading;
 
   if (calibratedHeading < 0) {
     calibratedHeading = 360 + calibratedHeading;
