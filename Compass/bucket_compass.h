@@ -37,7 +37,7 @@ float getHeading() { //get angle from cmps12 sensor in facingAngle format
   return heading;
 }
 
-float getCalibratedHeading() {
+float getCalibratedHeading() { //sets calibrated heading to 0 degrees, the starting angle of the bot
 
   float calibratedHeading = getHeading() - startingHeading;
 
