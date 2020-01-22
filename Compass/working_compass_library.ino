@@ -3,7 +3,8 @@
 
 void setup()
 {
-  Serial.begin(9600);              // Start serial ports
+  
+  Serial.begin(9600);// Start serial ports
   CMPS12.begin(9600);
 
   startingHeading = getAbsoluteHeading();

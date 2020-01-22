@@ -5,7 +5,12 @@
 #define CMPS_GET_PITCH 0x14
 #define CMPS_GET_ROLL 0x15
 
-SoftwareSerial CMPS12 = SoftwareSerial(8, 9);
+// The following digital pins can be used for RX on MEGA2560
+// 10, 11, 12, 13, 14, 15, 50, 51, 52, 53
+#define CMPS_RX_PIN 10
+#define CMPS_TX_PIN 11
+
+SoftwareSerial CMPS12 = SoftwareSerial(CMPS_RX_PIN,CMPS_TX_PIN);
 
 unsigned char high_byte, low_byte, angle8;
 char pitch, roll;
@@ -37,7 +42,7 @@ float getAbsoluteHeading() { //get angle from cmps12 sensor in facingAngle forma
   return heading;
 }
 
-float getHeading() { //creates new heading that centers the bot at 0 degrees3
+float getHeading() { //creates new heading that centers the bot at 0 degrees
 
   float calibratedHeading = getAbsoluteHeading() - startingHeading;
 
